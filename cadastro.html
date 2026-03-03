@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Empresa - Orleans</title>
+    <style>
+        :root { --primary: #1a365d; --accent: #2f855a; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        
+        .form-container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
+        h2 { color: var(--primary); text-align: center; margin-bottom: 25px; }
+        
+        .field { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #444; }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 1rem; }
+        
+        .btn-submit { width: 100%; padding: 15px; background: var(--accent); color: white; border: none; border-radius: 8px; font-size: 1.1rem; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        .btn-submit:hover { background: #276749; }
+        
+        .info-nota { font-size: 0.85rem; color: #666; margin-top: 15px; text-align: center; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Anuncie sua Empresa</h2>
+    <form id="cadastroForm">
+        <div class="field">
+            <label>Nome da Empresa</label>
+            <input type="text" id="nome" placeholder="Ex: Panificadora Orleans" required>
+        </div>
+
+        <div class="field">
+            <label>Categoria</label>
+            <select id="categoria">
+                <option value="Gastronomia">Gastronomia</option>
+                <option value="Serviços">Serviços</option>
+                <option value="Varejo">Varejo</option>
+                <option value="Saúde">Saúde</option>
+                <option value="Turismo">Turismo</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label>Bairro</label>
+            <input type="text" id="bairro" placeholder="Ex: Barro Vermelho" required>
+        </div>
+
+        <div class="field">
+            <label>Endereço Completo (Para o Mapa)</label>
+            <input type="text" id="endereco" placeholder="Rua, Número, Orleans - SC" required>
+        </div>
+
+        <div class="field">
+            <label>WhatsApp de Contato</label>
+            <input type="tel" id="whatsapp" placeholder="(48) 99999-9999" required>
+        </div>
+
+        <button type="button" class="btn-submit" onclick="enviarDados()">Enviar Cadastro</button>
+        
+        <p class="info-nota">Ao enviar, nossa equipe revisará os dados antes de publicar.</p>
+    </form>
+</div>
+
+<script>
+    function enviarDados() {
+        // Coleta os valores do formulário
+        const nome = document.getElementById('nome').value;
+        const cat = document.getElementById('categoria').value;
+        const bairro = document.getElementById('bairro').value;
+        const end = document.getElementById('endereco').value;
+        const zap = document.getElementById('whatsapp').value;
+
+        // Monta a mensagem para o WhatsApp do administrador (você)
+        const mensagem = `*Novo Cadastro de Empresa - Orleans*%0A%0A` +
+                         `*Nome:* ${nome}%0A` +
+                         `*Categoria:* ${cat}%0A` +
+                         `*Bairro:* ${bairro}%0A` +
+                         `*Endereço:* ${end}%0A` +
+                         `*WhatsApp:* ${zap}`;
+
+        // Redireciona para o seu WhatsApp com os dados prontos
+        const seuNumero = "5548999999999"; // <-- COLOQUE SEU NÚMERO AQUI (com DDD)
+        window.open(`https://api.whatsapp.com/send?phone=${seuNumero}&text=${mensagem}`, '_blank');
+        
+        alert("Obrigado! Você será redirecionado para concluir o envio via WhatsApp.");
+    }
+</script>
+
+</body>
+</html>
