@@ -5,58 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google - Orleans SC</title>
     <style>
-        body { font-family: arial, sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; min-height: 100vh; background: white; }
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', arial, sans-serif; margin: 0; display: flex; flex-direction: column; min-height: 100vh; background: #fff; }
         
-        /* Menu Superior */
-        header { display: flex; justify-content: flex-end; padding: 15px 20px; gap: 15px; align-items: center; }
-        header a { text-decoration: none; color: rgba(0,0,0,0.87); font-size: 13px; }
+        /* Cabeçalho */
+        header { display: flex; justify-content: flex-end; padding: 15px 25px; gap: 20px; align-items: center; }
+        header a { text-decoration: none; color: #000; font-size: 13px; opacity: 0.85; }
         header a:hover { text-decoration: underline; }
-        .btn-cadastro { background: #1a73e8; color: white !important; padding: 8px 24px; border-radius: 4px; font-weight: bold; }
+        .btn-blue { background: #1a73e8; color: white !important; padding: 9px 23px; border-radius: 4px; font-weight: 500; }
 
-        /* Área Central (Home) */
-        .search-wrapper { flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; transition: 0.3s; }
+        /* Centro (Modo Home) */
+        main { flex: 1; display: flex; flex-direction: column; align-items: center; padding-top: 15vh; transition: all 0.3s ease; }
         
-        .logo { font-size: 80px; font-weight: bold; margin-bottom: 30px; }
-        .logo span:nth-child(1) { color: #4285F4; } .logo span:nth-child(2) { color: #EA4335; }
-        .logo span:nth-child(3) { color: #FBBC05; } .logo span:nth-child(4) { color: #4285F4; }
-        .logo span:nth-child(5) { color: #34A853; } .logo span:nth-child(6) { color: #EA4335; }
+        .logo { font-size: 90px; font-weight: 500; margin-bottom: 25px; letter-spacing: -2px; }
+        .logo span:nth-child(1) { color: #4285F4; } /* O */
+        .logo span:nth-child(2) { color: #EA4335; } /* r */
+        .logo span:nth-child(3) { color: #FBBC05; } /* l */
+        .logo span:nth-child(4) { color: #4285F4; } /* e */
+        .logo span:nth-child(5) { color: #34A853; } /* a */
+        .logo span:nth-child(6) { color: #EA4335; } /* n */
+        .logo span:nth-child(7) { color: #FBBC05; } /* s */
 
-        .search-bar { width: 100%; max-width: 584px; border: 1px solid #dfe1e5; border-radius: 24px; display: flex; padding: 5px 15px; align-items: center; transition: box-shadow 0.2s; }
-        .search-bar:hover, .search-bar:focus-within { box-shadow: 0 1px 6px rgba(32,33,36,0.28); border-color: transparent; }
-        .search-bar input { flex: 1; border: none; padding: 10px; font-size: 16px; outline: none; }
-        
-        .buttons { margin-top: 25px; display: flex; gap: 12px; }
-        .buttons button { background: #f8f9fa; border: 1px solid #f8f9fa; color: #3c4043; padding: 10px 16px; border-radius: 4px; font-size: 14px; cursor: pointer; }
-        .buttons button:hover { border: 1px solid #dadce0; color: #202124; box-shadow: 0 1px 1px rgba(0,0,0,0.1); }
-
-        /* Resultados (Aparecem após a busca) */
-        #results-container { display: none; max-width: 650px; margin-left: 160px; padding: 20px; }
-        .result-item { margin-bottom: 30px; }
-        .result-item cite { font-style: normal; color: #202124; font-size: 14px; display: block; margin-bottom: 4px; }
-        .result-item h3 { color: #1a0dab; font-size: 20px; font-weight: 400; margin: 0 0 4px 0; cursor: pointer; }
-        .result-item h3:hover { text-decoration: underline; }
-        .result-item p { color: #4d5156; font-size: 14px; line-height: 1.58; margin: 0; }
-
-        /* Rodapé */
-        footer { background: #f2f2f2; color: #70757a; font-size: 15px; }
-        .footer-loc { padding: 15px 30px; border-bottom: 1px solid #dadce0; }
-        
-        /* Ajuste se os resultados estiverem visíveis */
-        body.searching .search-wrapper { justify-content: flex-start; margin-top: 20px; }
-        body.searching .logo { font-size: 30px; margin-bottom: 10px; }
-    </style>
-</head>
-<body id="body">
-
-<header id="main-header">
-    <a href="#">Gmail</a>
-    <a href="#">Imagens</a>
-    <a href="cadastro.html" class="btn-cadastro">Anunciar Empresa</a>
-</header>
-
-<div class="search-wrapper" id="search-wrapper">
-    <div class="logo">
-        <span>O</span><span>r</span><span>l</span><span>e</span><span>a</span><span>n</span><span>s</span>
-    </div>
-
-    <div class
+        .search-area { width: 100%; max-width: 584px; padding: 0 20px; text-align: center
