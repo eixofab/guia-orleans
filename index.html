@@ -1,129 +1,51 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google - Orleans/SC</title>
-    <style>
-        :root {
-            --google-blue: #4285f4;
-            --google-gray: #70757a;
-            --border-color: #dfe1e5;
-        }
+<style>
+    /* Ajuste na Wrapper para alinhar o botão */
+    .search-wrapper {
+        position: relative;
+        margin: 0 10px;
+        display: flex;
+        align-items: center;
+        max-width: 600px;
+        width: 100%;
+    }
 
-        body {
-            font-family: 'arial', sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            background: white;
-        }
+    .search-bar {
+        flex: 1;
+        padding: 14px 100px 14px 45px; /* Espaço para o ícone e o botão */
+        font-size: 16px;
+        border: 1px solid var(--border-color);
+        border-radius: 24px;
+        outline: none;
+        transition: box-shadow 0.2s;
+    }
 
-        /* Topo / Menu */
-        nav {
-            width: 100%;
-            display: flex;
-            justify-content: flex-end;
-            padding: 15px;
-            box-sizing: border-box;
-        }
-        nav a {
-            text-decoration: none;
-            color: black;
-            font-size: 13px;
-            margin-left: 15px;
-            padding: 5px;
-        }
-        .btn-cadastro {
-            background: var(--google-blue);
-            color: white !important;
-            padding: 8px 15px !important;
-            border-radius: 4px;
-            font-weight: bold;
-        }
+    .btn-search-inline {
+        position: absolute;
+        right: 8px;
+        background: #f8f9fa;
+        border: 1px solid #f8f9fa;
+        color: #3c4043;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: border 0.2s, box-shadow 0.2s;
+    }
 
-        /* Centro - Logo e Busca */
-        .search-section {
-            margin-top: 100px;
-            width: 100%;
-            max-width: 600px;
-            text-align: center;
-            transition: margin-top 0.4s ease;
-        }
+    .btn-search-inline:hover {
+        box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+        background-image: -webkit-linear-gradient(top,#f8f8f8,#f1f1f1);
+        background-color: #f8f8f8;
+        border: 1px solid #dadce0;
+        color: #202124;
+    }
 
-        .logo {
-            font-size: 80px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            letter-spacing: -2px;
-        }
-        .logo span:nth-child(1) { color: #4285F4; } /* G */
-        .logo span:nth-child(2) { color: #EA4335; } /* o */
-        .logo span:nth-child(3) { color: #FBBC05; } /* o */
-        .logo span:nth-child(4) { color: #4285F4; } /* g */
-        .logo span:nth-child(5) { color: #34A853; } /* l */
-        .logo span:nth-child(6) { color: #EA4335; } /* e */
-
-        .search-wrapper {
-            position: relative;
-            margin: 0 10px;
-        }
-
-        .search-bar {
-            width: 100%;
-            padding: 14px 20px 14px 45px;
-            font-size: 16px;
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            outline: none;
-            transition: box-shadow 0.2s;
-        }
-        .search-bar:hover, .search-bar:focus {
-            box-shadow: 0 1px 6px rgba(32,33,36,0.28);
-            border-color: rgba(223,225,229,0);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 15px;
-            top: 15px;
-            color: #9aa0a6;
-        }
-
-        /* Resultados */
-        .results-container {
-            width: 100%;
-            max-width: 700px;
-            margin-top: 30px;
-            display: none; /* Escondido inicialmente */
-            padding: 20px;
-        }
-
-        .res-item {
-            margin-bottom: 30px;
-            animation: fadeIn 0.5s;
-        }
-        .res-link { color: #202124; font-size: 14px; margin-bottom: 4px; display: block; }
-        .res-title { color: #1a0dab; font-size: 20px; text-decoration: none; cursor: pointer; }
-        .res-title:hover { text-decoration: underline; }
-        .res-desc { color: #4d5156; font-size: 14px; line-height: 1.5; margin-top: 5px; }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* Estado "Pesquisado" */
-        body.searched .search-section { margin-top: 20px; }
-        body.searched .logo { font-size: 30px; margin-bottom: 15px; text-align: left; margin-left: 20px; }
-        body.searched .results-container { display: block; }
-    </style>
-</head>
-<body id="body">
-
-<nav>
-    <a href="#">Imagens</a>
-    <a href="cadastro.html" class="btn-cadastro">Anuncie sua Empresa</a>
-</nav>
+    /* Ajuste para mobile */
+    @media (max-width: 480px) {
+        .search-bar { padding-right: 80px; }
+        .btn-search-inline { padding: 8px 10px; font-size: 12px; }
+    }
+</style>
 
 <div class="search-section" id="searchSection">
     <div class="logo">
@@ -132,65 +54,51 @@
     
     <div class="search-wrapper">
         <span class="search-icon">🔍</span>
-        <input type="text" id="mainSearch" class="search-bar" placeholder="Pesquisar em Orleans..." onkeyup="handleSearch(event)">
+        <input type="text" id="mainSearch" class="search-bar" placeholder="Pesquisar em Orleans..." onkeyup="handleKey(event)">
+        <button class="btn-search-inline" onclick="dispararBusca()">Pesquisa</button>
     </div>
 </div>
 
-<div class="results-container" id="results">
-    <p style="color: #70757a; font-size: 14px;" id="stats"></p>
-    <div id="itemsList"></div>
-</div>
-
 <script>
-    let empresas = [];
-
-    // Carregando do seu JSON
-    async function carregarDados() {
-        try {
-            const res = await fetch('empresas.json');
-            empresas = await res.json();
-        } catch(e) { 
-            // Mock para teste se o JSON não carregar localmente
-            empresas = [
-                { nome: "Paredão do Zé", desc: "Melhor gastronomia típica de Orleans.", bairro: "Centro", cat: "Restaurante" },
-                { nome: "Museu ao Ar Livre", desc: "Patrimônio histórico e cultural único na América Latina.", bairro: "Conde D'Eu", cat: "Turismo" }
-            ];
-        }
-    }
-
-    function handleSearch(e) {
-        const termo = e.target.value.toLowerCase();
+    // Função unificada para disparar a lógica
+    function dispararBusca() {
+        const campo = document.getElementById('mainSearch');
+        const termo = campo.value.toLowerCase().trim();
         
-        if (e.key === 'Enter' && termo !== "") {
+        if (termo !== "") {
             document.getElementById('body').classList.add('searched');
             executarBusca(termo);
         }
     }
 
+    // Captura o Enter
+    function handleKey(e) {
+        if (e.key === 'Enter') {
+            dispararBusca();
+        }
+    }
+
+    // A função executarBusca(termo) permanece a mesma da resposta anterior
     function executarBusca(termo) {
         const filtradas = empresas.filter(emp => 
             emp.nome.toLowerCase().includes(termo) || 
             emp.bairro.toLowerCase().includes(termo) ||
-            emp.categoria?.toLowerCase().includes(termo)
+            (emp.categoria && emp.categoria.toLowerCase().includes(termo))
         );
 
         const listDiv = document.getElementById('itemsList');
+        document.getElementById('results').style.display = "block"; // Garante que apareça
         document.getElementById('stats').innerText = `Aproximadamente ${filtradas.length} resultados encontrados.`;
 
         listDiv.innerHTML = filtradas.map(emp => `
             <div class="res-item">
-                <span class="res-link">www.orleans.sc.gov.br › ${emp.bairro.toLowerCase()}</span>
-                <a class="res-title" onclick="alert('Abrindo mapa para: ${emp.nome}')">${emp.nome} - ${emp.bairro}</a>
+                <span class="res-link">https://guiadeorleans.com.br › ${emp.bairro.toLowerCase()}</span>
+                <a class="res-title" href="#" onclick="alert('Local: ${emp.endereco || emp.nome}')">${emp.nome}</a>
                 <div class="res-desc">
-                    <strong>${emp.categoria || 'Empresa'}</strong> · Localizada em Orleans, Santa Catarina. 
-                    Confira horários e telefone para contato direto com este estabelecimento.
+                    <strong>${emp.categoria || 'Comércio'}</strong> · Localizado em Orleans, SC. 
+                    Bairro: ${emp.bairro}. Clique para ver detalhes e localização.
                 </div>
             </div>
         `).join('');
     }
-
-    carregarDados();
 </script>
-
-</body>
-</html>
