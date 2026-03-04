@@ -3,27 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google - Orleans SC</title>
+    <title>OrleCompras - Busca de Empresas em Orleans</title>
     <style>
         * { box-sizing: border-box; }
-        body { font-family: 'Segoe UI', arial, sans-serif; margin: 0; display: flex; flex-direction: column; min-height: 100vh; background: #fff; }
+        
+        body { 
+            font-family: 'Segoe UI', arial, sans-serif; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh; 
+            background: #202124; /* Fundo Dark do Google */
+            color: #e8eaed; 
+        }
         
         /* Cabeçalho */
-        header { display: flex; justify-content: flex-end; padding: 15px 25px; gap: 20px; align-items: center; }
-        header a { text-decoration: none; color: #000; font-size: 13px; opacity: 0.85; }
+        header { 
+            display: flex; 
+            justify-content: flex-end; 
+            padding: 15px 25px; 
+            gap: 20px; 
+            align-items: center; 
+        }
+        header a { text-decoration: none; color: #bdc1c6; font-size: 13px; }
         header a:hover { text-decoration: underline; }
-        .btn-blue { background: #1a73e8; color: white !important; padding: 9px 23px; border-radius: 4px; font-weight: 500; }
+        .btn-anunciar { 
+            background: #8ab4f8; 
+            color: #202124 !important; 
+            padding: 9px 23px; 
+            border-radius: 4px; 
+            font-weight: 500; 
+        }
 
         /* Centro (Modo Home) */
-        main { flex: 1; display: flex; flex-direction: column; align-items: center; padding-top: 15vh; transition: all 0.3s ease; }
+        main { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            padding-top: 12vh; 
+            transition: all 0.3s ease; 
+        }
         
-        .logo { font-size: 90px; font-weight: 500; margin-bottom: 25px; letter-spacing: -2px; }
-        .logo span:nth-child(1) { color: #4285F4; } /* O */
-        .logo span:nth-child(2) { color: #EA4335; } /* r */
-        .logo span:nth-child(3) { color: #FBBC05; } /* l */
-        .logo span:nth-child(4) { color: #4285F4; } /* e */
-        .logo span:nth-child(5) { color: #34A853; } /* a */
-        .logo span:nth-child(6) { color: #EA4335; } /* n */
-        .logo span:nth-child(7) { color: #FBBC05; } /* s */
+        .logo-container { margin-bottom: 30px; text-align: center; }
+        .logo-img { 
+            width: 100%; 
+            max-width: 450px; /* Tamanho proporcional à logo do Google */
+            height: auto;
+        }
 
-        .search-area { width: 100%; max-width: 584px; padding: 0 20px; text-align: center
+        .search-area { width: 100%; max-width: 584px; padding: 0 20px; }
+        .search-box { 
+            display: flex; 
+            align-items: center; 
+            padding: 0 15px; 
+            height: 46px;
+            border: 1px solid #5f6368; 
+            border-radius: 24px; 
+            background: transparent;
+            transition: box-shadow 0.2s, background 0.2s;
+        }
+        .search-box:hover, .search-box:focus-within { 
+            background: #303134;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.4); 
+            border-color: transparent; 
+        }
+        .search-box input { 
+            flex: 1; 
+            border: none; 
+            outline: none; 
+            font-size: 16px; 
+            padding: 10px; 
+            background: transparent; 
+            color: white; 
+        }
+        .icon-search { color: #9aa0a6; margin-right: 10px; }
+
+        .home-btns { margin-top: 30px; display: flex; gap: 12px; justify-content: center; }
+        .home-btns button { 
+            background: #303134; 
+            border: 1px solid #303134; 
+            color: #e8eaed; 
+            padding: 0 16px; 
+            height: 36px; 
+            border-radius: 4px; 
+            font-size: 14px; 
+            cursor: pointer; 
+        }
+        .home-btns button:hover { border: 1px solid #5f6368; }
+
+        /* Container de Resultados */
+        #results { 
+            display: none; 
+            width: 100%; 
+            max-width: 700px; 
+            margin: 20px auto; 
+            padding: 0 20px; 
+        }
+        .res-stats { color: #9aa0a6; font-size: 14px; margin-bottom: 20px; }
+        .res-card { margin-bottom: 30px; }
+        .res-card cite { color: #bdc1c6; font-size: 14px; display: block; margin-bottom: 4px; font-style: normal; }
+        .res-card h3 { color: #8ab4f8; font-size: 20px; font-weight: 400; margin: 0; cursor: pointer; }
+        .res-card h3:hover { text-decoration: underline; }
+        .res-card p { color: #bdc1c6; font-size: 14px; line-height: 1.5; margin-top: 5px; }
+
+        /* Rodapé */
+        footer { background: #171717; color: #9aa0a6; font-size: 14px; }
+        .f-top { padding: 15px 30px; border-bottom: 1px solid #3c4043; }
+        .f-bottom { padding: 15px 30px; display: flex; gap: 25px; }
+
+        /* Estado "Pesquisando" */
+        body.searching main { padding-top: 20px; align-items: flex-start; }
+        body.searching .logo-img { max-width: 150px; margin-right: 30px; }
+        body.searching .header-container { 
+            display: flex; 
+            align-items: center; 
+            width: 100%; 
+            border-bottom: 1px solid #3c4043; 
+            padding: 20px 30px; 
+        }
+        body.searching .home-btns, body.searching header { display: none; }
+    </style>
+</head>
+<body id="pageBody">
+
+<header>
+    <a href="#">Empresas</a>
+    <a href="#">Turismo</a>
+    <a href="cadastro.html" class="btn-anunciar">Anunciar no OrleCompras</a>
+</header>
+
+<main>
+    <div id="topSection" class="logo-container">
+        <img src="Principal branco.png" alt="OrleCompras" class="logo-img">
+        
+        <div class="search-area">
+            <div class="search-box">
+                <span class="icon-search">🔍</span>
+                <input type="text" id="searchInput" onkeyup="handleKey(event)" placeholder="O que você procura em Orleans?">
+            </div>
+            <div class="home-btns">
+                <button onclick="doSearch()">Pesquisar Empresas</button>
+                <button onclick="lucky()">Estou com sorte</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="results">
+        <div class="res-stats" id="stats"></div>
+        <div id="resultsList"></div>
+    </div>
+</main>
+
+<footer>
+    <div class="f-top">Orleans, Santa Catarina - OrleCompras Local Search</div>
+    <div class="f-bottom">
+        <span>Sobre</span>
+        <span>Privacidade</span>
+        <span>Termos</span>
+    </div>
+</footer>
+
+<script>
+    // Lista de exemplo (isso seria lido do seu empresas.json)
+    let empresas = [
+        {nome: "Paredão do Zé", cat: "Turismo", end: "Rua Aristiliano Ramos", desc: "Ponto turístico icônico de Orleans com artes esculpidas na pedra."},
+        {nome: "Supermercado Orleans", cat: "Varejo", end: "Centro", desc: "Variedade e qualidade para as compras da sua família."},
+        {nome: "Café da Praça", cat: "Gastronomia", end: "Praça Celso Ramos", desc: "O melhor café colonial no coração de Orleans."}
+    ];
+
+    function handleKey(e) { if (e.key === 'Enter') doSearch(); }
+
+    function doSearch() {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        if(!query) return;
+
+        document.getElementById('pageBody').classList.add('searching');
+        document.getElementById('topSection').classList.add('header-container');
+        document.getElementById('results').style.display = 'block';
+
+        const filtered = empresas.filter(e => 
+            e.nome.toLowerCase().includes(query) || 
+            e.cat.toLowerCase().includes(query)
+        );
+
+        render(filtered);
+    }
+
+    function render(lista) {
+        const listDiv = document.getElementById('resultsList');
+        document.getElementById('stats').innerText = `${lista.length} resultados encontrados para Orleans`;
+        
+        listDiv.innerHTML = lista.map(e => `
+            <div class="res-card">
+                <cite>orlecompras.com.br › ${e.cat.toLowerCase()}</cite>
+                <h3 onclick="alert('Abrindo mapa para: ' + e.nome)">${e.nome} - ${e.cat}</h3>
+                <p>📍 Localizado em ${e.end}. ${e.desc}</p>
+            </div>
+        `).join('');
+    }
+
+    function lucky() {
+        const r = empresas[Math.floor(Math.random()*empresas.length)];
+        alert("Que tal visitar: " + r.nome + "?");
+    }
+</script>
+
+</body>
+</html>
