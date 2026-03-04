@@ -78,5 +78,40 @@
         "endereco": "Rua XV de Novembro, 161, Orleans - SC",
         "telefone": "(48) 3466-0238",
         "link": "#"
+    },
+    {
+        "nome": "Librelato S.A. Implementos Rodoviários",
+        "categoria": "Indústria",
+        "bairro": "Centro",
+        "endereco": "Rua José Librelato, 100, Orleans, SC",
+        "link": "https://www.librelato.com.br"
+    },
+    {
+        "nome": "Febave - UNIBAVE",
+        "categoria": "Educação",
+        "bairro": "Conde D'Eu",
+        "endereco": "Rua Padre Januário Abel, 164, Orleans, SC",
+        "link": "https://unibave.edu.br"
+    },
+    {
+        "nome": "Real Transportes e Turismo",
+        "categoria": "Transporte",
+        "bairro": "Barro Vermelho",
+        "endereco": "Rodovia SC-390, Orleans, SC",
+        "link": "https://www.realtransporteeturismo.com.br"
+    },
+    {
+        "nome": "Museu ao Ar Livre Princesa Isabel",
+        "categoria": "Turismo",
+        "bairro": "Conde D'Eu",
+        "endereco": "Rua Padre Januário Abel, Orleans, SC",
+        "link": "https://museuaoarlivre.com.br"
+    },
+    {
+        "nome": "ACIO - Associação Empresarial",
+        "categoria": "Serviços",
+        "bairro": "Centro",
+        "endereco": "Rua Vitor Meirelles, Orleans, SC",
+        "link": "https://acio.com.br"
     }
 ]
