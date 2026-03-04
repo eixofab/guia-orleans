@@ -78,5 +78,75 @@
         "endereco": "Rua XV de Novembro, 161, Orleans - SC",
         "telefone": "(48) 3466-0238",
         "link": "#"
+    },
+    {
+        "nome": "Librelato S.A. Implementos Rodoviários",
+        "categoria": "Indústria",
+        "bairro": "Centro",
+        "endereco": "Rua José Librelato, 100, Orleans, SC",
+        "desc": "Uma das maiores indústrias de implementos rodoviários do Brasil, orgulho de Orleans."
+    },
+    {
+        "nome": "Real Transportes e Turismo",
+        "categoria": "Transporte",
+        "bairro": "Barro Vermelho",
+        "endereco": "Rodovia SC-390, Orleans, SC",
+        "desc": "Referência em logística e transporte de passageiros na região sul."
+    },
+    {
+        "nome": "Febave - UNIBAVE",
+        "categoria": "Educação",
+        "bairro": "Conde D'Eu",
+        "endereco": "Rua Padre Januário Abel, 164, Orleans, SC",
+        "desc": "Centro universitário e fundação educacional que move a inovação em Orleans."
+    },
+    {
+        "nome": "Plaszom Zomer Ind. de Plásticos",
+        "categoria": "Indústria",
+        "bairro": "Santista",
+        "endereco": "Rua Professor Maia, Orleans, SC",
+        "desc": "Líder no setor de embalagens plásticas com forte presença no mercado nacional."
+    },
+    {
+        "nome": "Churrascaria Zomer",
+        "categoria": "Gastronomia",
+        "bairro": "Centro",
+        "endereco": "Rua Aristiliano Ramos, Orleans, SC",
+        "desc": "Tradição em carnes e gastronomia típica para famílias e viajantes."
+    },
+    {
+        "nome": "Restaurante e Lanchonete do Paredão",
+        "categoria": "Gastronomia",
+        "bairro": "Centro",
+        "endereco": "Rua Etienne Stawiarski, Orleans, SC",
+        "desc": "Localizado junto ao ponto turístico, servindo o melhor da comida caseira."
+    },
+    {
+        "nome": "Coorsel - Cooperativa de Eletricidade",
+        "categoria": "Serviços",
+        "bairro": "Centro",
+        "endereco": "Rua Vitor Meirelles, Orleans, SC",
+        "desc": "Cooperativa de eletrificação rural que atende Orleans e região."
+    },
+    {
+        "nome": "Farmácia Preço Popular",
+        "categoria": "Saúde",
+        "bairro": "Centro",
+        "endereco": "Praça Celso Ramos, Orleans, SC",
+        "desc": "Atendimento farmacêutico completo no coração da cidade."
+    },
+    {
+        "nome": "Loterias Orleans",
+        "categoria": "Serviços",
+        "bairro": "Centro",
+        "endereco": "Rua Aristiliano Ramos, Orleans, SC",
+        "desc": "Serviços bancários e jogos lotéricos com conveniência."
+    },
+    {
+        "nome": "Cerâmica Orleanense",
+        "categoria": "Indústria",
+        "bairro": "Corridas",
+        "endereco": "Estrada Geral Corridas, Orleans, SC",
+        "desc": "Produção de materiais cerâmicos de alta qualidade para construção."
     }
 ]
