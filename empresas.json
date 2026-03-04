@@ -1,1 +1,82 @@
-[{"nome":"Delícias do Paredão","categoria":"Gastronomia","bairro":"Centro","endereco":"Rua Aristiliano Ramos, Orleans, SC","telefone":"(48) 3466-0001","link":"#"},{"nome":"Esculturas do Paredão","categoria":"Turismo","bairro":"Conde D'Eu","endereco":"Rua Etienne Stawiarski, Orleans, SC","telefone":"(48) 3466-0002","link":"#"}]
+[
+    {
+        "nome": "Museu ao Ar Livre Princesa Isabel",
+        "categoria": "Turismo",
+        "bairro": "Conde D'Eu",
+        "endereco": "Rua Padre Januário Abel, 40, Orleans - SC",
+        "telefone": "(48) 3466-0611",
+        "link": "https://www.unibave.net/museu-ao-ar-livre"
+    },
+    {
+        "nome": "Esculturas do Paredão (Zé Diabo)",
+        "categoria": "Turismo",
+        "bairro": "Centro",
+        "endereco": "Rua Etienne Stawiarski, Orleans - SC",
+        "telefone": "(48) 3466-0178",
+        "link": "#"
+    },
+    {
+        "nome": "Real Nob Hotel",
+        "categoria": "Hospedagem",
+        "bairro": "Centro",
+        "endereco": "Rua Professor Maia, 657, Orleans - SC",
+        "telefone": "(48) 3466-0600",
+        "link": "https://www.realnobhotel.com.br"
+    },
+    {
+        "nome": "Restaurante e Churrascaria Zé do Egito",
+        "categoria": "Gastronomia",
+        "bairro": "Centro",
+        "endereco": "Rua Aristiliano Ramos, 137, Orleans - SC",
+        "telefone": "(48) 3466-0242",
+        "link": "#"
+    },
+    {
+        "nome": "Librelato S.A. Implementos Rodoviários",
+        "categoria": "Indústria",
+        "bairro": "Centro",
+        "endereco": "Rua Vitorino Bacichette, 150, Orleans - SC",
+        "telefone": "(48) 3466-7500",
+        "link": "https://www.librelato.com.br"
+    },
+    {
+        "nome": "Unibave - Centro Universitário Barriga Verde",
+        "categoria": "Educação",
+        "bairro": "Conde D'Eu",
+        "endereco": "Rua Padre Januário Abel, 164, Orleans - SC",
+        "telefone": "(48) 3466-5600",
+        "link": "https://www.unibave.net"
+    },
+    {
+        "nome": "Hospital Santa Otília",
+        "categoria": "Saúde",
+        "bairro": "Centro",
+        "endereco": "Rua Vinte de Novembro, 252, Orleans - SC",
+        "telefone": "(48) 3466-0131",
+        "link": "#"
+    },
+    {
+        "nome": "Farmácia Preço Popular",
+        "categoria": "Saúde",
+        "bairro": "Centro",
+        "endereco": "Rua Aristiliano Ramos, 410, Orleans - SC",
+        "telefone": "(48) 3466-3023",
+        "link": "#"
+    },
+    {
+        "nome": "Supermercado Real",
+        "categoria": "Varejo",
+        "bairro": "Centro",
+        "endereco": "Rua Aristiliano Ramos, 255, Orleans - SC",
+        "telefone": "(48) 3466-1066",
+        "link": "#"
+    },
+    {
+        "nome": "Pizzaria e Restaurante Casarão",
+        "categoria": "Gastronomia",
+        "bairro": "Centro",
+        "endereco": "Rua XV de Novembro, 161, Orleans - SC",
+        "telefone": "(48) 3466-0238",
+        "link": "#"
+    }
+]
