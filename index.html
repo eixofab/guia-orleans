@@ -5,185 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google - Orleans/SC</title>
     <style>
-        body {
-            font-family: arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            background: #fff;
-        }
+        body { font-family: arial, sans-serif; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; background: #fff; overflow-x: hidden; }
 
-        /* Topo */
-        nav {
-            width: 100%;
-            display: flex;
-            justify-content: flex-end;
-            padding: 15px 20px;
-            box-sizing: border-box;
-            gap: 15px;
-        }
-        nav a { text-decoration: none; color: #000; font-size: 13px; opacity: 0.85; line-height: 32px; }
-        .user-icon { width: 32px; height: 32px; background: #005aab; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; }
-
-        /* Centro do Google */
-        .main-search-container {
-            margin-top: 120px;
-            width: 100%;
-            max-width: 600px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .logo {
-            font-size: 80px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            letter-spacing: -3px;
-            cursor: default;
-        }
-        /* Cores Google aplicadas a "Orleans" */
-        .logo span:nth-child(1) { color: #4285F4; } 
-        .logo span:nth-child(2) { color: #EA4335; } 
-        .logo span:nth-child(3) { color: #FBBC05; } 
-        .logo span:nth-child(4) { color: #4285F4; } 
-        .logo span:nth-child(5) { color: #34A853; } 
-        .logo span:nth-child(6) { color: #EA4335; } 
+        /* Estilo da Logo Orleans */
+        .logo { font-size: 80px; font-weight: bold; margin-bottom: 30px; letter-spacing: -3px; transition: 0.3s; cursor: pointer; }
+        .logo span:nth-child(1) { color: #4285F4; } .logo span:nth-child(2) { color: #EA4335; } 
+        .logo span:nth-child(3) { color: #FBBC05; } .logo span:nth-child(4) { color: #4285F4; } 
+        .logo span:nth-child(5) { color: #34A853; } .logo span:nth-child(6) { color: #EA4335; } 
         .logo span:nth-child(7) { color: #FBBC05; }
 
-        /* Barra de Busca + Botão ao Lado */
-        .search-area {
-            display: flex;
-            width: 90%;
-            gap: 10px;
-            align-items: center;
-        }
+        /* Container de Busca */
+        .main-search-container { margin-top: 100px; width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; transition: all 0.4s ease; }
+        .search-area { display: flex; width: 90%; gap: 10px; align-items: center; }
+        .search-box-wrapper { flex: 1; display: flex; align-items: center; border: 1px solid #dfe1e5; border-radius: 24px; padding: 0 15px; height: 44px; }
+        .search-box-wrapper:focus-within { box-shadow: 0 1px 6px rgba(32,33,36,0.28); border-color: transparent; }
+        .search-box-wrapper input { flex: 1; border: none; outline: none; font-size: 16px; margin-left: 10px; }
+        
+        .btn-google { background: #f8f9fa; border: 1px solid #f8f9fa; color: #3c4043; padding: 0 16px; height: 40px; border-radius: 4px; font-size: 14px; cursor: pointer; }
 
-        .search-box-wrapper {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            border: 1px solid #dfe1e5;
-            border-radius: 24px;
-            padding: 0 15px;
-            height: 44px;
-            transition: box-shadow 0.2s;
-        }
-        .search-box-wrapper:hover, .search-box-wrapper:focus-within {
-            box-shadow: 0 1px 6px rgba(32,33,36,0.28);
-            border-color: rgba(223,225,229,0);
-        }
+        /* Resultados e Mapa */
+        .content-layout { display: flex; width: 100%; max-width: 1000px; margin-top: 20px; display: none; padding: 0 20px; gap: 30px; }
+        .results-column { flex: 1; }
+        .map-column { width: 350px; position: sticky; top: 20px; height: 400px; }
 
-        .search-box-wrapper input {
-            flex: 1;
-            border: none;
-            outline: none;
-            font-size: 16px;
-            margin-left: 10px;
-        }
+        .result-item { margin-bottom: 25px; padding: 10px; border-radius: 8px; cursor: pointer; }
+        .result-item:hover { background: #f8f9fa; }
+        .result-title { color: #1a0dab; font-size: 20px; text-decoration: none; display: block; margin-bottom: 5px; }
+        .result-snippet { color: #4d5156; font-size: 14px; }
 
-        .btn-google {
-            background: #f8f9fa;
-            border: 1px solid #f8f9fa;
-            color: #3c4043;
-            padding: 0 16px;
-            height: 40px;
-            border-radius: 4px;
-            font-size: 14px;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-        .btn-google:hover {
-            border: 1px solid #dadce0;
-            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-            color: #202124;
-        }
+        iframe { width: 100%; height: 100%; border: 1px solid #dfe1e5; border-radius: 8px; }
 
-        /* Resultados de Pesquisa */
-        .results-container {
-            width: 100%;
-            max-width: 700px;
-            margin-top: 20px;
-            display: none;
-            padding: 0 20px;
-        }
-        .result-item { margin-bottom: 25px; animation: fadeIn 0.4s; }
-        .result-link { color: #202124; font-size: 14px; margin-bottom: 4px; display: block; }
-        .result-title { color: #1a0dab; font-size: 20px; text-decoration: none; cursor: pointer; display: block; }
-        .result-title:hover { text-decoration: underline; }
-        .result-snippet { color: #4d5156; font-size: 14px; line-height: 1.5; margin-top: 5px; }
+        /* Estado "Pesquisado" */
+        body.searched .main-search-container { margin-top: 20px; align-items: flex-start; max-width: 90%; margin-left: 20px; }
+        body.searched .logo { font-size: 30px; margin-bottom: 10px; }
+        body.searched .content-layout { display: flex; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Ajustes quando pesquisado */
-        body.searched .main-search-container {
-            margin-top: 20px;
-            margin-left: 20px;
-            align-items: flex-start;
-            max-width: 100%;
+        @media (max-width: 768px) {
+            .content-layout { flex-direction: column; }
+            .map-column { width: 100%; height: 250px; order: -1; position: relative; }
         }
-        body.searched .logo { font-size: 24px; margin-bottom: 15px; margin-left: 10px; }
-        body.searched .results-container { display: block; }
-        body.searched nav { display: none; }
     </style>
 </head>
 <body id="pageBody">
 
-<nav>
-    <a href="#">Imagens</a>
-    <a href="cadastro.html">Anuncie sua Empresa</a>
-    <div class="user-icon">O</div>
-</nav>
-
 <div class="main-search-container">
-    <div class="logo">
+    <div class="logo" onclick="location.reload()">
         <span>O</span><span>r</span><span>l</span><span>e</span><span>a</span><span>n</span><span>s</span>
     </div>
-    
     <div class="search-area">
         <div class="search-box-wrapper">
-            <span style="color:#9aa0a6">🔍</span>
-            <input type="text" id="searchInput" placeholder="O que você procura em Orleans?" onkeyup="verificarEnter(event)">
+            <span>🔍</span>
+            <input type="text" id="searchInput" placeholder="Pesquisar em Orleans..." onkeyup="event.key === 'Enter' && fazerPesquisa()">
         </div>
         <button class="btn-google" onclick="fazerPesquisa()">Pesquisar</button>
     </div>
 </div>
 
-<div class="results-container" id="resultsArea">
-    <p style="font-size: 14px; color: #70757a;" id="counter"></p>
-    <div id="resultsList"></div>
+<div class="content-layout" id="contentLayout">
+    <div class="results-column" id="resultsList"></div>
+
+    <div class="map-column" id="mapColumn">
+        <div id="mapPlaceholder" style="padding: 20px; background: #f1f3f4; border-radius: 8px; text-align: center; color: #70757a;">
+            Clique em uma empresa para ver no mapa de Orleans
+        </div>
+        <iframe id="googleMap" style="display:none" src=""></iframe>
+    </div>
 </div>
 
 <script>
-    // Dados de exemplo (No futuro, virão do seu empresas.json)
     const empresas = [
-        { nome: "Museu ao Ar Livre", bairro: "Conde D'Eu", desc: "Patrimônio histórico de Orleans que preserva a cultura da imigração." },
-        { nome: "Esculturas do Paredão", bairro: "Centro", desc: "Arte esculpida em pedra pelo artista Zé Diabo, cartão postal da cidade." },
-        { nome: "Restaurante e Churrascaria", bairro: "Barro Vermelho", desc: "O melhor espeto corrido da região sul de Santa Catarina." },
-        { nome: "Oficina Mecânica Orleans", bairro: "Santista", desc: "Serviços de manutenção automotiva com qualidade e confiança." }
+        { nome: "Museu ao Ar Livre", bairro: "Conde D'Eu", endereco: "Rua Padre Januário Abel, Orleans, SC", desc: "Museu tecnológico e histórico sobre a colonização." },
+        { nome: "Esculturas do Paredão", bairro: "Centro", endereco: "Rua Etienne Stawiarski, Orleans, SC", desc: "Esculturas monumentais na encosta da rocha." },
+        { nome: "Real Transportes", bairro: "Barro Vermelho", endereco: "SC-390, Orleans, SC", desc: "Serviços de transporte e logística." },
+        { nome: "Igreja Matriz Santa Otília", bairro: "Centro", endereco: "Praça Celso Ramos, Orleans, SC", desc: "Ponto turístico e religioso central." }
     ];
-
-    function verificarEnter(event) {
-        if (event.key === "Enter") {
-            fazerPesquisa();
-        }
-    }
 
     function fazerPesquisa() {
         const termo = document.getElementById('searchInput').value.toLowerCase().trim();
-        if (termo === "") return;
-
-        // Ativa layout de resultados
         document.getElementById('pageBody').classList.add('searched');
 
-        const filtradas = empresas.filter(e => 
-            e.nome.toLowerCase().includes(termo) || 
-            e.bairro.toLowerCase().includes(termo) ||
-            e.desc.toLowerCase().includes(termo)
+        // Se estiver em branco, traz todas. Caso contrário, filtra.
+        const filtradas = termo === "" ? empresas : empresas.filter(e => 
+            e.nome.toLowerCase().includes(termo) || e.bairro.toLowerCase().includes(termo)
         );
 
         exibirResultados(filtradas);
@@ -191,24 +94,30 @@
 
     function exibirResultados(lista) {
         const listDiv = document.getElementById('resultsList');
-        const counter = document.getElementById('counter');
-        
-        counter.innerText = `Cerca de ${lista.length} resultados encontrados.`;
         
         if (lista.length === 0) {
-            listDiv.innerHTML = "<p>Nenhum resultado encontrado para Orleans.</p>";
+            listDiv.innerHTML = "<p>Nenhum resultado encontrado.</p>";
             return;
         }
 
         listDiv.innerHTML = lista.map(e => `
-            <div class="result-item">
-                <span class="result-link">https://guiaorleans.com.br › ${e.bairro.toLowerCase()}</span>
-                <a class="result-title" onclick="alert('Local: ${e.nome}')">${e.nome} - Orleans, SC</a>
-                <div class="result-snippet">
-                    <strong>${e.bairro}</strong>: ${e.desc}
-                </div>
+            <div class="result-item" onclick="mostrarNoMapa('${e.nome}', '${e.endereco}')">
+                <span style="font-size:12px; color:#202124">https://guiaorleans.com.br › ${e.bairro.toLowerCase()}</span>
+                <a class="result-title">${e.nome}</a>
+                <div class="result-snippet"><strong>${e.bairro}</strong>: ${e.desc}</div>
             </div>
         `).join('');
+    }
+
+    function mostrarNoMapa(nome, endereco) {
+        const iframe = document.getElementById('googleMap');
+        const placeholder = document.getElementById('mapPlaceholder');
+        const enderecoURL = encodeURIComponent(endereco);
+        
+        placeholder.style.display = "none";
+        iframe.style.display = "block";
+        // URL de Embed do Google Maps
+        iframe.src = `https://maps.google.com/maps?q=${enderecoURL}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
     }
 </script>
 
